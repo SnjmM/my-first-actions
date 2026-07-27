@@ -3,12 +3,22 @@ name: My First Workflow
 on: push
 
 jobs:
-  say-hello:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Print a message
-        run: echo "Hello, this is my first GitHub Actions workflow!"
+      - name: Simulate build step
+        run: echo "Building the project"
 
-      - name: Print another message
-        run: echo "Today's date is:" 
-      - run: echo $(date)
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Simulate test step
+        run: echo "Running tests"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Simulate deploy step
+        run: echo "Deploying the project"
